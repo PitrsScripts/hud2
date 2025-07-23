@@ -31,13 +31,13 @@ Directional compass (North, East, etc.) based on player heading
 
 Auto-toggle minimap when entering or exiting a vehicle
 
-###📍 Live Location Display
+### 📍 Live Location Display
 
 Shows current street and area/zone name
 
 Auto-updates every half second for accuracy
 
-###🆔 Server ID Display
+### 🆔 Server ID Display
 
 Shows your current server ID directly on the HUD
 
