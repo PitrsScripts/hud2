@@ -47,7 +47,7 @@ Automatically hides HUD when pause menu is open
 
 Seamless fade in/out when resuming gameplay
 
-🛠️ Framework-Agnostic Design
+### 🛠️ Framework-Agnostic Design
 
 Fully supports ESX and QBCore
 
@@ -55,7 +55,7 @@ Automatically detects and adapts to the active framework
 
 Uses MySQL or player metadata to store health and armor
 
-🧩 Modular & Configurable
+### 🧩 Modular & Configurable
 
 Easily toggle HUD visibility with /hud
 
