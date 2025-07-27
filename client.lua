@@ -24,7 +24,7 @@ CreateThread(function()
 end)
 
 local function initVoiceHUD()
-    proximity = "normal" -- Výchozí režim
+    proximity = "normal" 
     updateVoiceHUD()
     TriggerEvent('pma-voice:setTalkingMode', 'normal')
 end
@@ -284,22 +284,22 @@ end)
 -- Armor and Health sync
 RegisterNetEvent("QBCore:Client:OnPlayerLoaded", function()
     Wait(500)
-    TriggerServerEvent('pitrs_hud:server:LoadArmorAndHealth')
+    TriggerServerEvent('hud2:server:LoadArmorAndHealth')
     SetMinimapPosition()
     hudReady = true
-    initVoiceHUD() 
+    initVoiceHUD() -- Přidáno
 end)
 
 AddEventHandler('playerSpawned', function()
     Wait(1000)
-    TriggerServerEvent('pitrs_hud:server:LoadArmorAndHealth')
+    TriggerServerEvent('hud2:server:LoadArmorAndHealth')
     SetMinimapPosition()
     hudReady = true
-    initVoiceHUD() 
+    initVoiceHUD() -- Přidáno
 end)
 
-RegisterNetEvent('pitrs_hud:client:UpdateArmorAndHealth')
-AddEventHandler('pitrs_hud:client:UpdateArmorAndHealth', function(armorValue, healthValue)
+RegisterNetEvent('hud2:client:UpdateArmorAndHealth')
+AddEventHandler('hud2:client:UpdateArmorAndHealth', function(armorValue, healthValue)
     local ped = PlayerPedId()
     SetPedArmour(ped, armorValue or 0)
     if healthValue and healthValue > 0 then
@@ -319,11 +319,11 @@ CreateThread(function()
             local currentHealth = GetEntityHealth(playerPed) - 100
 
             if currentArmor ~= lastArmorValue then
-                TriggerServerEvent('pitrs_hud:server:UpdateArmor', currentArmor)
+                TriggerServerEvent('hud2:server:UpdateArmor', currentArmor)
                 lastArmorValue = currentArmor
             end
             if currentHealth ~= lastHealthValue then
-                TriggerServerEvent('pitrs_hud:server:UpdateHealth', currentHealth)
+                TriggerServerEvent('hud2:server:UpdateHealth', currentHealth)
                 lastHealthValue = currentHealth
             end
 
@@ -346,15 +346,15 @@ end)
 
 CreateThread(function()
     local directions = {
-        [0]   = "North",
-        [45]  = "Northeast",
-        [90]  = "East",
-        [135] = "Southeast",
-        [180] = "South",
-        [225] = "Southwest",
-        [270] = "West",
-        [315] = "Northwest",
-        [360] = "North"
+        [0]   = "Sever",
+        [45]  = "Severovýchod",
+        [90]  = "Východ",
+        [135] = "Jihovýchod",
+        [180] = "Jih",
+        [225] = "Jihozápad",
+        [270] = "Západ",
+        [315] = "Severozápad",
+        [360] = "Sever"
     }
 
     local function getDirectionFromHeading(heading)
@@ -394,7 +394,7 @@ AddEventHandler('onResourceStop', function(resourceName)
         local ped = PlayerPedId()
         local health = GetEntityHealth(ped) - 100
         local armor = GetPedArmour(ped)
-        TriggerServerEvent('pitrs_hud:server:SaveHealthArmor', health, armor)
+        TriggerServerEvent('hud2:server:SaveHealthArmor', health, armor)
     end
 end)
 

@@ -214,7 +214,6 @@ body {
     font-size: 18px;
 }
 
-
 #location-text {
     font-family: 'Russo One', sans-serif;
     display: flex;
@@ -222,10 +221,6 @@ body {
     line-height: 1.1;
     user-select: none;
     background-color: transparent; 
-}
-
-#street-name {
-    font-weight: 600;
 }
 
 #area-name {

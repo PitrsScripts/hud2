@@ -15,7 +15,7 @@ CreateThread(function()
     end
 end)
 
-RegisterNetEvent('pitrs_hud:server:UpdateArmor', function(newArmor)
+RegisterNetEvent('hud2:server:UpdateArmor', function(newArmor)
     local src = source
     if frameworkType == "esx" then
         local xPlayer = Framework.GetPlayerFromId(src)
@@ -35,7 +35,7 @@ RegisterNetEvent('pitrs_hud:server:UpdateArmor', function(newArmor)
 end)
 
 
-RegisterNetEvent('pitrs_hud:server:UpdateHealth', function(newHealth)
+RegisterNetEvent('hud2:server:UpdateHealth', function(newHealth)
     local src = source
     if frameworkType == "esx" then
         local xPlayer = Framework.GetPlayerFromId(src)
@@ -54,7 +54,7 @@ RegisterNetEvent('pitrs_hud:server:UpdateHealth', function(newHealth)
     end
 end)
 
-RegisterNetEvent('pitrs_hud:server:LoadArmorAndHealth', function()
+RegisterNetEvent('hud2:server:LoadArmorAndHealth', function()
     local src = source
     if frameworkType == "esx" then
         local xPlayer = Framework.GetPlayerFromId(src)
@@ -62,9 +62,9 @@ RegisterNetEvent('pitrs_hud:server:LoadArmorAndHealth', function()
             local identifier = xPlayer.identifier
             MySQL.single('SELECT armor, health FROM users WHERE identifier = ?', {identifier}, function(result)
                 if result then
-                    TriggerClientEvent('pitrs_hud:client:UpdateArmorAndHealth', src, result.armor or 0, result.health or 100)
+                    TriggerClientEvent('hud2:client:UpdateArmorAndHealth', src, result.armor or 0, result.health or 100)
                 else
-                    TriggerClientEvent('pitrs_hud:client:UpdateArmorAndHealth', src, 0, 100)
+                    TriggerClientEvent('hud2:client:UpdateArmorAndHealth', src, 0, 100)
                 end
             end)
         end
@@ -73,7 +73,7 @@ RegisterNetEvent('pitrs_hud:server:LoadArmorAndHealth', function()
         if Player then
             local armor = Player.PlayerData.metadata["armor"] or 0
             local health = Player.PlayerData.metadata["health"] or 100
-            TriggerClientEvent('pitrs_hud:client:UpdateArmorAndHealth', src, armor, health)
+            TriggerClientEvent('hud2:client:UpdateArmorAndHealth', src, armor, health)
         end
     end
 end)
