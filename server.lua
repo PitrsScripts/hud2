@@ -40,11 +40,6 @@ RegisterNetEvent('hud2:server:UpdateHealth', function(newHealth)
     if frameworkType == "esx" then
         local xPlayer = Framework.GetPlayerFromId(src)
         if xPlayer then
-            local identifier = xPlayer.identifier
-            MySQL.update('UPDATE users SET health = ? WHERE identifier = ?', {
-                newHealth,
-                identifier
-            })
         end
     elseif frameworkType == "qbcore" then
         local Player = Framework.Functions.GetPlayer(src)
@@ -60,9 +55,9 @@ RegisterNetEvent('hud2:server:LoadArmorAndHealth', function()
         local xPlayer = Framework.GetPlayerFromId(src)
         if xPlayer then
             local identifier = xPlayer.identifier
-            MySQL.single('SELECT armor, health FROM users WHERE identifier = ?', {identifier}, function(result)
+            MySQL.single('SELECT armor FROM users WHERE identifier = ?', {identifier}, function(result)
                 if result then
-                    TriggerClientEvent('hud2:client:UpdateArmorAndHealth', src, result.armor or 0, result.health or 100)
+                    TriggerClientEvent('hud2:client:UpdateArmorAndHealth', src, result.armor or 0, 100)
                 else
                     TriggerClientEvent('hud2:client:UpdateArmorAndHealth', src, 0, 100)
                 end
@@ -88,9 +83,8 @@ AddEventHandler('playerDropped', function()
         local xPlayer = Framework.GetPlayerFromId(src)
         if xPlayer then
             local identifier = xPlayer.identifier
-            MySQL.update('UPDATE users SET armor = ?, health = ? WHERE identifier = ?', {
+            MySQL.update('UPDATE users SET armor = ? WHERE identifier = ?', {
                 armor,
-                health,
                 identifier
             })
         end
