@@ -6,6 +6,9 @@ CreateThread(function()
         Framework = exports["es_extended"]:getSharedObject()
         frameworkType = "esx"
         print("[HUD] Framework detected: ESX")
+        MySQL.query('ALTER TABLE users ADD COLUMN IF NOT EXISTS armor INT DEFAULT 0', {}, function()
+            print("[HUD] Armor column check completed for ESX")
+        end)
     elseif GetResourceState("qb-core") == "started" then
         Framework = exports["qb-core"]:GetCoreObject()
         frameworkType = "qbcore"
