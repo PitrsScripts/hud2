@@ -205,9 +205,6 @@ RegisterCommand("hud", function()
 end)
 
 -- Minimap
-local _DisplayRadar = DisplayRadar
-DisplayRadar = function() end
-
 function SetMinimapPosition()
     local defaultAspectRatio = 1920 / 1080
     local resolutionX, resolutionY = GetActiveScreenResolution()
@@ -256,25 +253,25 @@ CreateThread(function()
     while true do
         Wait(300)
         local playerPed = PlayerPedId()
-        _DisplayRadar(IsPedInAnyVehicle(playerPed))
+        DisplayRadar(IsPedInAnyVehicle(playerPed))
     end
 end)
 
-CreateThread(function()
-    RequestScaleformMovie("minimap")
-    SetRadarBigmapEnabled(false, false)
-    Wait(0)
+Citizen.CreateThread(function()
+    Wait(2000)
+    local minimap = RequestScaleformMovie("minimap")
+    while not HasScaleformMovieLoaded(minimap) do
+        Wait(0)
+    end
+    
+    SetRadarBigmapEnabled(true, false)
+    Wait(100)
     SetRadarBigmapEnabled(false, false)
     SetMinimapPosition()
-end)
-
-Citizen.CreateThread(function()
-    local minimap = RequestScaleformMovie("minimap")
-    SetRadarBigmapEnabled(false, false)
-    Wait(0)
-    SetRadarBigmapEnabled(false, false)
+    DisplayRadar(true)
+    
     while true do
-        Wait(0)
+        Wait(100)
         BeginScaleformMovieMethod(minimap, "SETUP_HEALTH_ARMOUR")
         ScaleformMovieMethodAddParamInt(3)
         EndScaleformMovieMethod()
