@@ -70,5 +70,5 @@ Fully expandable — ready for job icons, money display, or other stats
 |**Code is accessible**|Yes|
 |**Subscription-based**|No|
 |**Lines (approximately)**|~933|
-|**Requirements**|ox_lib,oxmysql,esx/qb,pma-voice,|
+|**Requirements**|ox_lib,oxmysql,esx/qb,pma-voice,esx_status,esx_basicneeds|
 |**Support**|Yes|
