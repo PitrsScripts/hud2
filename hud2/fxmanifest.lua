@@ -32,6 +32,6 @@ despencies {
     'ox_lib',
     'oxmysql',
     'es_extended',
-    'esx_status',
+    --'esx_status',
     'esx_basicneeds',
 }
