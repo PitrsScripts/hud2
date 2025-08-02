@@ -28,10 +28,16 @@ files {
     'html/script.js'
 }
 
+data_file 'SCALEFORM_DLL' 'stream/minimap.gfx'
+files {
+    'stream/minimap.gfx',
+    'stream/squaremap.ytd'
+}
+
 despencies {
     'ox_lib',
     'oxmysql',
     'es_extended',
-    --'esx_status',
+    'esx_status',
     'esx_basicneeds',
 }

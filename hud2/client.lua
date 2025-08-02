@@ -216,7 +216,7 @@ function SetMinimapPosition()
     end
 
     local yOffsetAdjust = -0.01  
-    local xOffsetAdjust = 0.01   
+    local xOffsetAdjust = 0.03   
 
     SetMinimapComponentPosition(
         "minimap",
@@ -260,9 +260,11 @@ end)
 Citizen.CreateThread(function()
     Wait(2000)
     local minimap = RequestScaleformMovie("minimap")
-    while not HasScaleformMovieLoaded(minimap) do
-        Wait(0)
+    RequestStreamedTextureDict("squaremap", false)
+    while not HasStreamedTextureDictLoaded("squaremap") do
+        Wait(100)
     end
+    AddReplaceTexture("platform:/textures/graphics", "radarmasksm", "squaremap", "radarmasksm")
     
     SetRadarBigmapEnabled(true, false)
     Wait(100)
